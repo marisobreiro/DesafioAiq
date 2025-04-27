@@ -1,23 +1,26 @@
 import React from 'react';
-import {Image, SafeAreaView, StyleSheet, TouchableOpacity} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 
 import Menu from '../../assets/icons/menu.svg';
 import Mail from '../../assets/icons/mail.svg';
 
-export default function Header() {
+export function HeaderLeft() {
   return (
-    <SafeAreaView style={styles.container}>
-      <TouchableOpacity hitSlop={30} style={styles.menu}>
-        <Menu width={24} height={24} stroke={'#7B1FA2'} />
-        <Image
-          source={require('../../assets/images/avatar.png')}
-          style={styles.avatar}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity hitSlop={30}>
-        <Mail width={24} height={24} stroke={'#7B1FA2'} />
-      </TouchableOpacity>
-    </SafeAreaView>
+    <TouchableOpacity hitSlop={30} style={styles.menu}>
+      <Menu width={24} height={24} stroke={'#7B1FA2'} />
+      <Image
+        source={require('../../assets/images/avatar.png')}
+        style={styles.avatar}
+      />
+    </TouchableOpacity>
+  );
+}
+
+export function HeaderRight() {
+  return (
+    <TouchableOpacity hitSlop={30} style={styles.menu}>
+      <Mail width={24} height={24} stroke={'#7B1FA2'} />
+    </TouchableOpacity>
   );
 }
 

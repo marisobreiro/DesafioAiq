@@ -3,11 +3,14 @@ import {StyleSheet, TouchableOpacity} from 'react-native';
 
 type CardProps = {
   children: React.ReactNode;
+  onPress?: () => void;
 };
 
-export function Card({children}: CardProps) {
+export function Card({children, onPress}: CardProps) {
   return (
-    <TouchableOpacity style={styles.container}>{children}</TouchableOpacity>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
+      {children}
+    </TouchableOpacity>
   );
 }
 

@@ -1,38 +1,65 @@
 import React from 'react';
-import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import Header from '../../components/Header/Header';
+import {Image, StyleSheet, Text, View} from 'react-native';
+
+import {BadgeDiscont} from '@/assets/icons';
+import {Card, Layout} from '@/components';
+
+import {ProductList} from './components';
 
 export function HomeScreen() {
   return (
-    <SafeAreaView>
-      <Header />
-
-      <View style={{padding: 10}}>
-        <Image
-          style={styles.image}
-          source={require('../../assets/banners/bannerHome.png')}
-          resizeMode="contain"
-        />
-      </View>
-      <TouchableOpacity style={styles.favButton}>a</TouchableOpacity>
-    </SafeAreaView>
+    <Layout
+      children={
+        <View style={styles.container}>
+          <View style={styles.content}>
+            <Card
+              children={
+                <View>
+                  <View style={styles.card}>
+                    <BadgeDiscont width={24} height={24} stroke={'#7B1FA2'} />
+                    <View>
+                      <Text style={styles.cardText}>algum texto</Text>
+                    </View>
+                  </View>
+                  <Image
+                    style={styles.image}
+                    source={require('../../assets/banners/bannerHome.png')}
+                    resizeMode="contain"
+                  />
+                </View>
+              }
+            />
+            <ProductList />
+          </View>
+        </View>
+      }
+    />
   );
 }
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'space-between',
+    padding: 10,
+  },
   image: {
-    width: '100%',
+    borderRadius: 10,
     height: 200,
     resizeMode: 'cover',
-    borderRadius: 10,
+    width: '100%',
   },
-  favButton: {
-    bottom: 0,
-    position: 'relative',
-    right: 0,
-    width: 60,
-    height: 60,
-    backgroundColor: '#7B1FA2',
-    borderRadius: 40,
+  card: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  cardText: {
+    fontFamily: 'Nunito-Bold',
+    fontSize: 20,
+    color: '#333',
+    marginLeft: 10,
   },
 });

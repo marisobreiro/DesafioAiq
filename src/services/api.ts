@@ -26,3 +26,10 @@ export async function getProducts(): Promise<Product[]> {
   );
   return response.data;
 }
+
+export async function getProductById(id: number): Promise<Product> {
+  const response = await axios.get<Product>(
+    `https://fakestoreapi.com/products/${id}`,
+  );
+  return response.data;
+}

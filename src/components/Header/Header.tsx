@@ -1,20 +1,43 @@
-import * as React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {Image, SafeAreaView, StyleSheet, TouchableOpacity} from 'react-native';
+
+import Menu from '../../assets/icons/menu.svg';
+import Mail from '../../assets/icons/mail.svg';
 
 export default function Header() {
   return (
-    <View style={styles.container}>
-      <Text>Header</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <TouchableOpacity hitSlop={30} style={styles.menu}>
+        <Menu width={24} height={24} stroke={'#7B1FA2'} />
+        <Image
+          source={require('../../assets/images/avatar.png')}
+          style={styles.avatar}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity hitSlop={30}>
+        <Mail width={24} height={24} stroke={'#7B1FA2'} />
+      </TouchableOpacity>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
-    paddingBottom: 30,
-    paddingTop: 30,
+    backgroundColor: '#fff',
+    paddingHorizontal: 20,
+    paddingTop: 20,
+  },
+  menu: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  avatar: {
+    width: 40,
+    height: 40,
+    marginLeft: 10,
   },
 });

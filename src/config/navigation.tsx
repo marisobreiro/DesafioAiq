@@ -2,8 +2,9 @@ import React from 'react';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {HomeScreen} from '../screens/HomeScreen/HomeScreen';
-import Header from '../components/Header/Header';
+import {HomeScreen, ProductDetailsScreen} from '@/screens';
+import {HeaderLeft, HeaderRight} from '../components/Header/Header';
+import {Aiq, Back} from '@/assets/icons';
 
 export const RootStack = createNativeStackNavigator({
   initialRouteName: 'Home',
@@ -12,7 +13,23 @@ export const RootStack = createNativeStackNavigator({
       screen: HomeScreen,
       options: {
         headerShown: true,
-        header: () => <Header />,
+        headerLeft: () => <HeaderLeft />,
+        headerRight: () => <HeaderRight />,
+        headerTitle: '',
+      },
+    },
+    ProductDetails: {
+      screen: ProductDetailsScreen,
+      options: {
+        headerShown: true,
+        headerBackButtonDisplayMode: 'minimal',
+        headerBackTitleVisible: false,
+        headerBackVisible: true,
+        headerTintColor: '#fff',
+        headerStyle: {
+          backgroundColor: '#7B1FA2',
+        },
+        headerTitle: () => <Aiq width={24} height={24} />,
       },
     },
   },

@@ -18,13 +18,15 @@ type ProductItemProps = {
       count: number;
     };
   };
+  onPressItem: () => void;
 };
 
-export function ProductItem({item}: ProductItemProps) {
+export function ProductItem({item, onPressItem}: ProductItemProps) {
   const isFavorite = true;
 
   return (
     <Card
+      onPress={onPressItem}
       children={
         <View style={styles.content}>
           <View style={styles.imageContainer}>
@@ -97,6 +99,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-Bold',
     fontSize: 16,
     color: '#333',
+    textTransform: 'lowercase',
   },
   detailsContainer: {
     flexDirection: 'row',
@@ -119,6 +122,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-Regular',
     fontSize: 14,
     color: '#333',
+    textTransform: 'lowercase',
   },
   icon: {
     marginRight: 5,

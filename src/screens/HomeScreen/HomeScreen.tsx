@@ -1,5 +1,6 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import {BadgeDiscont} from '@/assets/icons';
 import {Card, Layout} from '@/components';
@@ -7,6 +8,12 @@ import {Card, Layout} from '@/components';
 import {ProductList} from './components';
 
 export function HomeScreen() {
+  const navigation = useNavigation();
+
+  const handleProductPress = (productId: number) => {
+    navigation.navigate('ProductDetails', {productId});
+  };
+
   return (
     <Layout
       children={
@@ -31,7 +38,7 @@ export function HomeScreen() {
                 </View>
               }
             />
-            <ProductList />
+            <ProductList onPressItem={handleProductPress} />
           </View>
         </View>
       }

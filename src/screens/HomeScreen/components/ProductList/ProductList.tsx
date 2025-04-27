@@ -11,7 +11,11 @@ import {useGetProducts} from '@/hooks/useGetProducts';
 import {FavoriteButton} from '../FavoriteButton/FavoriteButton';
 import {ProductItem} from '../ProductItem/ProductItem';
 
-export function ProductList() {
+type ProductListProps = {
+  onPressItem: (id: number) => void;
+};
+
+export function ProductList({onPressItem}: ProductListProps) {
   const {data, isError, isPending} = useGetProducts();
 
   if (isPending) {
@@ -40,7 +44,7 @@ export function ProductList() {
         keyExtractor={item => item.id.toString()}
         renderItem={({item}) => (
           <View style={styles.content}>
-            <ProductItem item={item} />
+            <ProductItem item={item} onPressItem={() => onPressItem(item.id)} />
           </View>
         )}
       />
@@ -61,5 +65,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-Bold',
     fontSize: 16,
     color: '#333',
+    textTransform: 'lowercase',
   },
 });

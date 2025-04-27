@@ -1,5 +1,9 @@
+export {default as Add} from './circle-plus.svg';
+export {default as Aiq} from './aiq.svg';
+export {default as Back} from './arrow-left.svg';
 export {default as BadgeDiscont} from './badge-percent.svg';
 export {default as DollarSign} from './dollar-sign.svg';
 export {default as Heart} from './heart.svg';
 export {default as Menu} from './menu.svg';
+export {default as Remove} from './circle-minus.svg';
 export {default as Star} from './star.svg';

@@ -3,30 +3,34 @@ import {StyleSheet, Text, View} from 'react-native';
 
 import {Category} from '@/services/api';
 
-export function Pill(item: Category) {
+export function Pill({category}: {category: Category}) {
   const categoryTranslations: Record<Category, string> = {
     [Category.MensClothing]: 'Roupas Masculinas',
     [Category.WomensClothing]: 'Roupas Femininas',
     [Category.Jewelery]: 'Joias',
     [Category.Electronics]: 'Eletrônicos',
   };
+
+  const translatedCategory = categoryTranslations[category];
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{categoryTranslations[item]}</Text>
+      <Text style={styles.text}>{translatedCategory}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    alignSelf: 'flex-start',
     backgroundColor: '#b79bc6',
-    padding: 5,
+    paddingHorizontal: 5,
+    paddingVertical: 2,
     borderRadius: 16,
-    width: 150,
   },
   text: {
     fontFamily: 'Nunito-Regular',
-    fontSize: 14,
-    color: '#333',
+    fontSize: 12,
+    color: '#fff',
   },
 });

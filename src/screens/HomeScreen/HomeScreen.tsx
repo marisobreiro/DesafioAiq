@@ -18,11 +18,13 @@ export function HomeScreen() {
                   <View style={styles.card}>
                     <BadgeDiscont width={24} height={24} stroke={'#7B1FA2'} />
                     <View>
-                      <Text style={styles.cardText}>algum texto</Text>
+                      <Text style={styles.cardText}>
+                        50% OFF pra sua criança interior
+                      </Text>
                     </View>
                   </View>
                   <Image
-                    style={styles.image}
+                    style={styles.banner}
                     source={require('../../assets/banners/bannerHome.png')}
                     resizeMode="contain"
                   />
@@ -40,15 +42,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
+    paddingTop: 20,
   },
   content: {
     flex: 1,
     justifyContent: 'space-between',
     padding: 10,
   },
-  image: {
+  banner: {
     borderRadius: 10,
-    height: 200,
+    marginTop: 10,
     resizeMode: 'cover',
     width: '100%',
   },

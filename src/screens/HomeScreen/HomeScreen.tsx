@@ -9,6 +9,7 @@ import {Filter, Layout} from '@/components';
 import {Category, categoryTranslations} from '@/types/categories';
 
 import {CardSection, FavoriteButton, ProductList} from './components';
+import {logSelectContentEvent} from '@/utils/analytics';
 
 export function HomeScreen() {
   const navigation =
@@ -27,7 +28,35 @@ export function HomeScreen() {
   ];
 
   const handleProductPress = (productId: number) => {
+    logSelectContentEvent({
+      content_type: 'home-screen:product-detail',
+      item_id: JSON.stringify(productId),
+    });
     navigation.navigate('ProductDetailsScreen', {productId});
+  };
+
+  const handlePressFilter = (item: any) => {
+    logSelectContentEvent({
+      content_type: 'home-screen:filter',
+      item_id: item,
+    });
+
+    if (item.key === 'favorites') {
+      setShowFavorites(prev => !prev);
+    } else {
+      setSelectedCategory(prev =>
+        prev === item.key ? null : (item.key as Category),
+      );
+    }
+  };
+
+  const handlePressFavButton = () => {
+    logSelectContentEvent({
+      content_type: 'home-screen:button',
+      item_id: 'favorite',
+    });
+
+    setShowFavorites(prev => !prev);
   };
 
   return (
@@ -52,15 +81,7 @@ export function HomeScreen() {
                     }
                     color={theme.colors.secondary}
                     title={item.label}
-                    onPress={() => {
-                      if (item.key === 'favorites') {
-                        setShowFavorites(prev => !prev);
-                      } else {
-                        setSelectedCategory(prev =>
-                          prev === item.key ? null : (item.key as Category),
-                        );
-                      }
-                    }}
+                    onPress={() => handlePressFilter(item)}
                   />
                 )}
               />
@@ -71,7 +92,7 @@ export function HomeScreen() {
               selectedCategory={selectedCategory}
             />
           </View>
-          <FavoriteButton onPress={() => setShowFavorites(prev => !prev)} />
+          <FavoriteButton onPress={() => handlePressFavButton()} />
         </View>
       }
     />

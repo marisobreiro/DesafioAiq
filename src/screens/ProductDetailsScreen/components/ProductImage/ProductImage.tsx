@@ -6,6 +6,7 @@ import {
   View,
 } from 'react-native';
 
+import theme from '@/config/theme';
 import {Heart} from '@/assets/icons';
 
 type ProductImageProps = {
@@ -22,7 +23,7 @@ export function ProductImage({
   onPressFavorite,
 }: ProductImageProps) {
   const size = 30;
-  const color = '#7B1FA2';
+  const color = theme.colors.primary;
 
   return (
     <View style={styles.container}>
@@ -32,7 +33,7 @@ export function ProductImage({
         <Image
           src={image}
           width={200}
-          height={200}
+          height={180}
           resizeMode="contain"
           style={styles.image}
         />
@@ -58,14 +59,14 @@ export function ProductImage({
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.secondary,
     height: 200,
     justifyContent: 'center',
     width: '100%',
     marginRight: 10,
   },
   image: {
-    padding: 30,
+    paddingVertical: 10,
   },
   favContainer: {
     position: 'absolute',

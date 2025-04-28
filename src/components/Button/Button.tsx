@@ -1,9 +1,10 @@
 import {
   StyleSheet,
-  Text,
   TouchableOpacity,
   TouchableOpacityProps,
 } from 'react-native';
+import {Paragraph} from '../Paragraph/Paragraph';
+import theme from '@/config/theme';
 
 type ButtonProps = {
   title: string;
@@ -12,7 +13,13 @@ type ButtonProps = {
 export function Button({title}: ButtonProps) {
   return (
     <TouchableOpacity style={style.container}>
-      <Text style={style.text}>{title}</Text>
+      <Paragraph
+        numberOfLines={1}
+        fontFamily={theme.fonts.bold}
+        fontSize={theme.fontSizes.large}
+        color={theme.colors.secondary}>
+        {title}
+      </Paragraph>
     </TouchableOpacity>
   );
 }
@@ -25,10 +32,6 @@ const style = StyleSheet.create({
     padding: 15,
     marginHorizontal: 15,
     marginBottom: 40,
-  },
-  text: {
-    fontFamily: 'Nunito-Bold',
-    fontSize: 22,
-    color: '#fff',
+    maxHeight: 100,
   },
 });

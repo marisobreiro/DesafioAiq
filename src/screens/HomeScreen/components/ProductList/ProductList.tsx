@@ -1,13 +1,10 @@
 import React from 'react';
-import {
-  ActivityIndicator,
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {ActivityIndicator, FlatList, StyleSheet, View} from 'react-native';
 
+import theme from '@/config/theme';
 import {useGetProducts} from '@/hooks/useGetProducts';
+import {Paragraph} from '@/components';
+
 import {FavoriteButton} from '../FavoriteButton/FavoriteButton';
 import {ProductItem} from '../ProductItem/ProductItem';
 
@@ -23,16 +20,16 @@ export function ProductList({onPressItem}: ProductListProps) {
   }
   if (isError) {
     return (
-      <Text style={styles.returnText}>
+      <Paragraph fontFamily={theme.fonts.bold}>
         Opa, algo de errado aconteceu aqui, tente novamente mais tarde.
-      </Text>
+      </Paragraph>
     );
   }
   if (data?.length === 0) {
     return (
-      <Text style={styles.returnText}>
+      <Paragraph fontFamily={theme.fonts.bold}>
         Eita, nenhum produto está disponível.
-      </Text>
+      </Paragraph>
     );
   }
 
@@ -55,16 +52,10 @@ export function ProductList({onPressItem}: ProductListProps) {
 
 const styles = StyleSheet.create({
   list: {
-    marginTop: 10,
+    marginTop: theme.spacing.sm,
   },
   content: {
     flex: 1,
-    padding: 10,
-  },
-  returnText: {
-    fontFamily: 'Nunito-Bold',
-    fontSize: 16,
-    color: '#333',
-    textTransform: 'lowercase',
+    padding: theme.spacing.sm,
   },
 });

@@ -1,23 +1,14 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 
 import {Heart, Star} from '@/assets/icons';
 import {formatCurrency} from '@/utils/formatters';
-import {Category} from '@/services/api';
-import {Card, Pill} from '@/components';
+import {Category, Product} from '@/services/api';
+import {Card, Paragraph, Pill} from '@/components';
+import theme from '@/config/theme';
 
 type ProductItemProps = {
-  item: {
-    id: number;
-    title: string;
-    image: string;
-    category: string;
-    price: number;
-    rating: {
-      rate: number;
-      count: number;
-    };
-  };
+  item: Product;
   onPressItem: () => void;
 };
 
@@ -39,32 +30,44 @@ export function ProductItem({item, onPressItem}: ProductItemProps) {
             />
           </View>
           <View style={styles.textContainer}>
-            <Text style={styles.title}>{item.title}</Text>
-            <Pill category={item.category as Category} />
+            <View>
+              <Paragraph
+                adjustsFontSizeToFit
+                numberOfLines={2}
+                fontFamily={theme.fonts.bold}>
+                {item.title}
+              </Paragraph>
+              <Pill category={item.category as Category} />
+            </View>
+
             <View style={styles.detailsContainer}>
               <View style={styles.detailsLeftContainer}>
                 <View style={styles.detailsContent}>
-                  <Text style={styles.currency}>R$</Text>
-                  <Text style={styles.secondaryText}>
+                  <Paragraph style={styles.currency}>R$</Paragraph>
+                  <Paragraph fontSize={theme.fontSizes.small}>
                     {formatCurrency(item.price, false)}
-                  </Text>
+                  </Paragraph>
                 </View>
+
                 <View style={styles.detailsContent}>
                   <Star
                     width={18}
                     height={18}
-                    stroke={'#7B1FA2'}
+                    stroke={theme.colors.primary}
+                    fill={theme.colors.primary}
                     style={styles.icon}
                   />
-                  <Text style={styles.secondaryText}>{item.rating.rate}</Text>
+                  <Paragraph fontSize={theme.fontSizes.small}>
+                    {item.rating.rate}
+                  </Paragraph>
                 </View>
               </View>
               {isFavorite && (
                 <Heart
                   width={18}
                   height={18}
-                  stroke={'#7B1FA2'}
-                  fill={'#7B1FA2'}
+                  stroke={theme.colors.primary}
+                  fill={isFavorite ? theme.colors.primary : ''}
                   style={styles.favorite}
                 />
               )}
@@ -80,7 +83,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
+    height: 100,
   },
   imageContainer: {
     alignItems: 'center',
@@ -94,12 +97,9 @@ const styles = StyleSheet.create({
     height: 60,
     width: 60,
   },
-  textContainer: {width: '80%'},
-  title: {
-    fontFamily: 'Nunito-Bold',
-    fontSize: 16,
-    color: '#333',
-    textTransform: 'lowercase',
+  textContainer: {
+    justifyContent: 'space-between',
+    width: '80%',
   },
   detailsContainer: {
     flexDirection: 'row',
@@ -118,20 +118,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginRight: 20,
   },
-  secondaryText: {
-    fontFamily: 'Nunito-Regular',
-    fontSize: 14,
-    color: '#333',
-    textTransform: 'lowercase',
-  },
   icon: {
     marginRight: 5,
   },
   currency: {
-    fontFamily: 'Nunito-Bold',
-    color: '#7B1FA2',
-    marginRight: 5,
-    fontSize: 16,
+    fontFamily: theme.fonts.bold,
+    fontSize: 14,
+    color: theme.colors.primary,
+    marginRight: theme.spacing.sm,
+    textTransform: 'uppercase',
   },
   favorite: {
     justifyContent: 'flex-end',

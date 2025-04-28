@@ -1,45 +1,73 @@
-import {Add, Remove} from '@/assets/icons';
-import {Separator} from '@/components';
-import {Product} from '@/services/api';
-import {formatCurrency} from '@/utils/formatters';
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-export function ProductCounter({price}: Pick<Product, 'price'>) {
-  const size = 36;
-  const color = '#00A296';
-  return (
-    <>
-      <Separator marginVertical={10} />
+import theme from '@/config/theme';
+import {Add, Remove} from '@/assets/icons';
+import {Paragraph} from '@/components';
+import {formatCurrency} from '@/utils/formatters';
 
+type ProductCounterProps = {
+  count: number;
+  price: number;
+  products: number;
+  increase: () => void;
+  decrease: () => void;
+};
+
+export function ProductCounter({
+  count,
+  price,
+  products,
+  increase,
+  decrease,
+}: ProductCounterProps) {
+  const size = 36;
+  const color = theme.colors.terciary;
+  return (
+    <View>
       <View style={styles.total}>
-        <Text style={styles.text}>valor total </Text>
+        <Paragraph fontSize={theme.fontSizes.large}>valor total </Paragraph>
         <Text style={styles.totalText}>{formatCurrency(price)}</Text>
       </View>
       <View style={styles.counter}>
-        <TouchableOpacity>
-          <Add width={size} height={size} stroke={color} />
-        </TouchableOpacity>
-
-        <Text style={styles.subtitle}>1</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => decrease()}>
           <Remove width={size} height={size} stroke={color} />
         </TouchableOpacity>
+        <Paragraph style={styles.counterValue}>{products}</Paragraph>
+
+        <TouchableOpacity
+          onPress={() => increase()}
+          disabled={products >= count}>
+          <Add width={size} height={size} stroke={color} />
+        </TouchableOpacity>
       </View>
-    </>
+      {products >= count && (
+        <Paragraph style={styles.counterText}>
+          Limite de produtos atingido
+        </Paragraph>
+      )}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: theme.colors.secondary,
+    bottom: 0,
+    paddingTop: 10,
+    position: 'absolute',
+    width: '100%',
+  },
   total: {
+    alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
     marginBottom: 20,
   },
   totalText: {
-    fontSize: 18,
     fontFamily: 'Nunito-Bold',
-    color: '#02A117',
+    fontSize: theme.fontSizes.large,
+    color: theme.colors.success,
   },
   counter: {
     flexDirection: 'row',
@@ -47,16 +75,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 20,
   },
-  subtitle: {
-    fontSize: 22,
-    fontFamily: 'Nunito-Regular',
-    textTransform: 'lowercase',
+  counterValue: {
+    fontSize: theme.fontSizes.large,
     marginHorizontal: 50,
   },
-  text: {
-    fontSize: 18,
-    fontFamily: 'Nunito-Regular',
-    textTransform: 'lowercase',
-    textAlign: 'justify',
+  counterText: {
+    alignSelf: 'center',
+    marginBottom: 10,
   },
 });

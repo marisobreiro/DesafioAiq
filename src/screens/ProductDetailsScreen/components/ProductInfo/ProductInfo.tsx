@@ -1,9 +1,10 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 
+import theme from '@/config/theme';
 import {Star} from '@/assets/icons';
 import {Category, Product} from '@/services/api';
-import {Pill} from '@/components';
+import {Paragraph, Pill} from '@/components';
 
 export function ProductInfo({
   title,
@@ -11,31 +12,35 @@ export function ProductInfo({
   rating,
   description,
 }: Omit<Product, 'id' | 'image' | 'price'>) {
-  const size = 22;
   const color = '#efcd26';
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
+      <Paragraph
+        fontFamily={theme.fonts.bold}
+        fontSize={theme.fontSizes.extraLarge}>
+        {title}
+      </Paragraph>
       <Pill category={category as Category} />
 
-      <View style={styles.descriptionContainer}>
+      <ScrollView style={styles.descriptionContainer}>
         <View style={styles.descriptionTitleContainer}>
-          <Text style={styles.subtitle}>descrição</Text>
-
+          <Paragraph fontSize={theme.fontSizes.large}>descrição</Paragraph>
           <View style={styles.ratingContainer}>
-            <Text style={styles.subtitle}>{rating.rate}</Text>
+            <Paragraph fontSize={theme.fontSizes.large}>
+              {rating.rate}
+            </Paragraph>
             <Star
-              width={size}
-              height={size}
+              width={theme.fontSizes.large}
+              height={theme.fontSizes.large}
               stroke={color}
               fill={color}
               style={styles.ratingIcon}
             />
           </View>
         </View>
-
-        <Text style={styles.text}>{description}</Text>
-      </View>
+        <Paragraph style={styles.text}>{description}</Paragraph>
+      </ScrollView>
     </View>
   );
 }
@@ -43,10 +48,10 @@ export function ProductInfo({
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    overflow: 'scroll',
   },
   descriptionContainer: {
     paddingTop: 10,
+    overflow: 'scroll',
   },
   descriptionTitleContainer: {
     flexDirection: 'row',
@@ -59,21 +64,11 @@ const styles = StyleSheet.create({
   },
   ratingIcon: {
     marginLeft: 5,
+    maxHeight: 36,
+    maxWidth: 36,
   },
-  title: {
-    fontSize: 28,
-    fontFamily: 'Nunito-Bold',
-    textTransform: 'lowercase',
-  },
-  subtitle: {
-    fontSize: 22,
-    fontFamily: 'Nunito-Regular',
-    textTransform: 'lowercase',
-  },
+
   text: {
-    fontSize: 18,
-    fontFamily: 'Nunito-Regular',
-    textTransform: 'lowercase',
     textAlign: 'justify',
   },
 });

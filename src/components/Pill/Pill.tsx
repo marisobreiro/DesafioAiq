@@ -1,7 +1,9 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
+import theme from '@/config/theme';
 import {Category} from '@/services/api';
+import {Paragraph} from '../Paragraph/Paragraph';
 
 export function Pill({category}: {category: Category}) {
   const categoryTranslations: Record<Category, string> = {
@@ -15,7 +17,11 @@ export function Pill({category}: {category: Category}) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{translatedCategory}</Text>
+      <Paragraph
+        fontSize={theme.fontSizes.small}
+        color={theme.colors.secondary}>
+        {translatedCategory}
+      </Paragraph>
     </View>
   );
 }
@@ -23,14 +29,9 @@ export function Pill({category}: {category: Category}) {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'flex-start',
-    backgroundColor: '#b79bc6',
-    paddingHorizontal: 5,
+    backgroundColor: theme.colors.backgroundSecondary,
+    paddingHorizontal: theme.spacing.sm,
     paddingVertical: 2,
-    borderRadius: 16,
-  },
-  text: {
-    fontFamily: 'Nunito-Regular',
-    fontSize: 12,
-    color: '#fff',
+    borderRadius: theme.borderRadius.large,
   },
 });

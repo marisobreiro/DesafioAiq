@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0C80B921A6F3F58F76C31292 /* libPods-DesafioAiq.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-DesafioAiq.a */; };
+		0E17FD4735EF4BD19EF04DF3 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C70F7F65ACD247ABAB2B62CF /* Nunito-Bold.ttf */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		81F925792D444242960B9D51 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E06FE3DCF5BD4757B04F90AD /* Nunito-Regular.ttf */; };
 		85FD0E112705EAFBB2317E7A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +26,8 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-DesafioAiq.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DesafioAiq.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = DesafioAiq/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = DesafioAiq/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C70F7F65ACD247ABAB2B62CF /* Nunito-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Bold.ttf"; path = "../src/assets/fonts/Nunito/Nunito-Bold.ttf"; sourceTree = "<group>"; };
+		E06FE3DCF5BD4757B04F90AD /* Nunito-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Regular.ttf"; path = "../src/assets/fonts/Nunito/Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -51,6 +55,15 @@
 			name = DesafioAiq;
 			sourceTree = "<group>";
 		};
+		24C14B0C75AB4E98B5570A83 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C70F7F65ACD247ABAB2B62CF /* Nunito-Bold.ttf */,
+				E06FE3DCF5BD4757B04F90AD /* Nunito-Regular.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +88,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				24C14B0C75AB4E98B5570A83 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -161,6 +175,8 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				85FD0E112705EAFBB2317E7A /* PrivacyInfo.xcprivacy in Resources */,
+				0E17FD4735EF4BD19EF04DF3 /* Nunito-Bold.ttf in Resources */,
+				81F925792D444242960B9D51 /* Nunito-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +276,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K5XLSQGSBX;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DesafioAiq/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
@@ -288,6 +305,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K5XLSQGSBX;
 				INFOPLIST_FILE = DesafioAiq/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (

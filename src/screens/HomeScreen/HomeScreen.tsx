@@ -1,9 +1,10 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
+import theme from '@/config/theme';
 import {BadgeDiscont} from '@/assets/icons';
-import {Card, Layout} from '@/components';
+import {Card, Layout, Paragraph} from '@/components';
 
 import {ProductList} from './components';
 
@@ -23,11 +24,17 @@ export function HomeScreen() {
               children={
                 <View>
                   <View style={styles.card}>
-                    <BadgeDiscont width={24} height={24} stroke={'#7B1FA2'} />
+                    <BadgeDiscont
+                      width={theme.fontSizes.icon}
+                      height={theme.fontSizes.icon}
+                      stroke={theme.colors.primary}
+                    />
                     <View>
-                      <Text style={styles.cardText}>
+                      <Paragraph
+                        fontFamily={theme.fonts.bold}
+                        style={styles.cardTitle}>
                         50% OFF pra sua criança interior
-                      </Text>
+                      </Paragraph>
                     </View>
                   </View>
                   <Image
@@ -48,7 +55,7 @@ export function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: theme.colors.background,
     paddingTop: 20,
   },
   content: {
@@ -57,7 +64,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   banner: {
-    borderRadius: 10,
+    borderRadius: theme.borderRadius.medium,
     marginTop: 10,
     resizeMode: 'cover',
     width: '100%',
@@ -66,10 +73,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  cardText: {
-    fontFamily: 'Nunito-Bold',
-    fontSize: 20,
-    color: '#333',
-    marginLeft: 10,
+  cardTitle: {
+    marginLeft: theme.spacing.sm,
   },
 });

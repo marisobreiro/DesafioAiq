@@ -24,11 +24,12 @@ export function ProductCounter({
   const size = 36;
   const color = theme.colors.terciary;
   return (
-    <View>
-      <View style={styles.total}>
+    <View style={styles.container}>
+      <View style={styles.totalContainer}>
         <Paragraph fontSize={theme.fontSizes.large}>valor total </Paragraph>
         <Text style={styles.totalText}>{formatCurrency(price)}</Text>
       </View>
+
       <View style={styles.counter}>
         <TouchableOpacity onPress={() => decrease()}>
           <Remove width={size} height={size} stroke={color} />
@@ -40,29 +41,30 @@ export function ProductCounter({
           disabled={products >= count}>
           <Add width={size} height={size} stroke={color} />
         </TouchableOpacity>
+        {products >= count && (
+          <Paragraph style={styles.counterText}>
+            Limite de produtos atingido
+          </Paragraph>
+        )}
       </View>
-      {products >= count && (
-        <Paragraph style={styles.counterText}>
-          Limite de produtos atingido
-        </Paragraph>
-      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: theme.colors.secondary,
+    position: 'relative',
     bottom: 0,
-    paddingTop: 10,
-    position: 'absolute',
-    width: '100%',
-  },
-  total: {
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'column',
+    backgroundColor: theme.colors.secondary,
+    paddingTop: 10,
+  },
+  totalContainer: {
+    alignItems: 'center',
     flexDirection: 'row',
-    marginBottom: 20,
+    marginBottom: 12,
   },
   totalText: {
     fontFamily: 'Nunito-Bold',
@@ -73,6 +75,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+
     marginBottom: 20,
   },
   counterValue: {

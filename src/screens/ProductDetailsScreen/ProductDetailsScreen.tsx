@@ -14,6 +14,7 @@ import {
   useStore,
   useStoreBears,
 } from '@/stores/favorites';
+import theme from '@/config/theme';
 
 export function ProductDetailsScreen({route}) {
   // const [isFavorite, setIsFavorite] = useState(false);
@@ -54,7 +55,7 @@ export function ProductDetailsScreen({route}) {
           rating={data?.rating || {rate: 0, count: 0}}
         />
       </View>
-      <View style={{}}>
+      <View style={styles.footer}>
         <ProductCounter
           price={data?.price || 0}
           products={bears}
@@ -72,5 +73,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
+  },
+  footer: {
+    backgroundColor: theme.colors.secondary,
   },
 });

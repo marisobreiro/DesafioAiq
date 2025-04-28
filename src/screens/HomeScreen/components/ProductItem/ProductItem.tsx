@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 
+import theme from '@/config/theme';
 import {Heart, Star} from '@/assets/icons';
 import {formatCurrency} from '@/utils/formatters';
-import {Category, Product} from '@/services/api';
 import {Card, Paragraph, Pill} from '@/components';
-import theme from '@/config/theme';
+import {isFavorite as checkIsFavorite} from '@/stores/favorites';
+import {Category, Product} from '@/types';
 
 type ProductItemProps = {
   item: Product;
@@ -13,7 +14,15 @@ type ProductItemProps = {
 };
 
 export function ProductItem({item, onPressItem}: ProductItemProps) {
-  const isFavorite = true;
+  const [favorite, setFavorite] = useState(false);
+
+  useEffect(() => {
+    const checkFavoriteStatus = async () => {
+      const fav = await checkIsFavorite(item.id);
+      setFavorite(fav);
+    };
+    checkFavoriteStatus();
+  }, [item.id]);
 
   return (
     <Card
@@ -62,12 +71,12 @@ export function ProductItem({item, onPressItem}: ProductItemProps) {
                   </Paragraph>
                 </View>
               </View>
-              {isFavorite && (
+              {favorite && (
                 <Heart
                   width={18}
                   height={18}
                   stroke={theme.colors.primary}
-                  fill={isFavorite ? theme.colors.primary : ''}
+                  fill={theme.colors.primary}
                   style={styles.favorite}
                 />
               )}

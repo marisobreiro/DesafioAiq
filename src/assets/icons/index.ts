@@ -3,6 +3,7 @@ export {default as Aiq} from './aiq.svg';
 export {default as Back} from './arrow-left.svg';
 export {default as BadgeDiscont} from './badge-percent.svg';
 export {default as DollarSign} from './dollar-sign.svg';
+export {default as Funnel} from './funnel.svg';
 export {default as Heart} from './heart.svg';
 export {default as Menu} from './menu.svg';
 export {default as Remove} from './circle-minus.svg';

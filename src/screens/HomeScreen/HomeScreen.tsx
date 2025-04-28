@@ -1,18 +1,26 @@
-import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import theme from '@/config/theme';
-import {BadgeDiscont} from '@/assets/icons';
-import {Card, Layout, Paragraph} from '@/components';
+import {RootStackParamList} from '@/config/navigation';
+import {Funnel} from '@/assets/icons';
+import {Filter, Layout} from '@/components';
+import {Category, categoryTranslations} from '@/types/categories';
 
-import {ProductList} from './components';
+import {CardSection, ProductList} from './components';
 
 export function HomeScreen() {
-  const navigation = useNavigation();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const [showFavorites, setShowFavorites] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(
+    null,
+  );
 
   const handleProductPress = (productId: number) => {
-    navigation.navigate('ProductDetails', {productId});
+    navigation.navigate('ProductDetailsScreen', {productId});
   };
 
   return (
@@ -20,32 +28,38 @@ export function HomeScreen() {
       children={
         <View style={styles.container}>
           <View style={styles.content}>
-            <Card
-              children={
-                <View>
-                  <View style={styles.card}>
-                    <BadgeDiscont
-                      width={theme.fontSizes.icon}
-                      height={theme.fontSizes.icon}
-                      stroke={theme.colors.primary}
-                    />
-                    <View>
-                      <Paragraph
-                        fontFamily={theme.fonts.bold}
-                        style={styles.cardTitle}>
-                        50% OFF pra sua criança interior
-                      </Paragraph>
-                    </View>
-                  </View>
-                  <Image
-                    style={styles.banner}
-                    source={require('../../assets/banners/bannerHome.png')}
-                    resizeMode="contain"
-                  />
-                </View>
-              }
+            <CardSection />
+            <View style={styles.filter}>
+              <Filter
+                backgroundColor={theme.colors.primary}
+                color={theme.colors.secondary}
+                title="favoritos"
+                onPress={() => setShowFavorites(prev => !prev)}
+              />
+              {Object.entries(categoryTranslations).map(([key, label]) => (
+                <Filter
+                  key={key}
+                  backgroundColor={theme.colors.primary}
+                  color={theme.colors.secondary}
+                  title={label}
+                  onPress={() =>
+                    setSelectedCategory(prev =>
+                      prev === key ? null : (key as Category),
+                    )
+                  }
+                />
+              ))}
+              <Funnel
+                width={20}
+                height={20}
+                stroke={theme.colors.textSecondary}
+              />
+            </View>
+            <ProductList
+              onPressItem={handleProductPress}
+              showFavorites={showFavorites}
+              selectedCategory={selectedCategory}
             />
-            <ProductList onPressItem={handleProductPress} />
           </View>
         </View>
       }
@@ -63,17 +77,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 10,
   },
-  banner: {
-    borderRadius: theme.borderRadius.medium,
-    marginTop: 10,
-    resizeMode: 'cover',
-    width: '100%',
-  },
-  card: {
+  filter: {
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  cardTitle: {
-    marginLeft: theme.spacing.sm,
+    justifyContent: 'space-between',
+    marginTop: 20,
   },
 });

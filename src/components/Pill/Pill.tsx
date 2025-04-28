@@ -2,17 +2,10 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
 import theme from '@/config/theme';
-import {Category} from '@/services/api';
+import {Category, categoryTranslations} from '@/types/categories';
 import {Paragraph} from '../Paragraph/Paragraph';
 
 export function Pill({category}: {category: Category}) {
-  const categoryTranslations: Record<Category, string> = {
-    [Category.MensClothing]: 'Roupas Masculinas',
-    [Category.WomensClothing]: 'Roupas Femininas',
-    [Category.Jewelery]: 'Joias',
-    [Category.Electronics]: 'Eletrônicos',
-  };
-
   const translatedCategory = categoryTranslations[category];
 
   return (

@@ -1,26 +1,46 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 
 import theme from '@/config/theme';
-import {Button} from '@/components';
 import {useGetProductById} from '@/hooks/useGetProductById';
-import {Category} from '@/services/api';
-import {useStoreProducts} from '@/stores/products';
+import {
+  addFavorite,
+  checkIsFavorite,
+  removeFavorite,
+  useStoreProducts,
+} from '@/stores';
+import {Button} from '@/components';
+import {Category} from '@/types';
 
-import {ProductImage} from './components/ProductImage/ProductImage';
-import {ProductInfo} from './components/ProductInfo/ProductInfo';
-import {ProductCounter} from './components/ProductCounter/ProductCounter';
+import {ProductCounter, ProductImage, ProductInfo} from './components';
+import {RootStackParamList} from '@/config/navigation';
 
-export function ProductDetailsScreen({route}) {
-  // const [isFavorite, setIsFavorite] = useState(false);
+export type ProductDetailsScrenProps = {
+  route: {params: RootStackParamList['ProductDetailsScreen']};
+};
+
+export function ProductDetailsScreen({route}: ProductDetailsScrenProps) {
+  const [favorite, setFavorite] = useState(false);
   const {productId} = route.params;
   const {data, isPending} = useGetProductById(productId);
 
   const {products, decreaseProducts, increaseProducts, removeAllProducts} =
     useStoreProducts();
 
-  const handleSetFavorite = id => {};
+  const checkFavorite = useCallback(async () => {
+    const fav = await checkIsFavorite(productId);
+    setFavorite(fav);
+  }, [productId]);
+
+  const handleSetFavorite = async () => {
+    if (favorite) {
+      await removeFavorite(productId);
+    } else {
+      await addFavorite(data!);
+    }
+    checkFavorite();
+  };
 
   useFocusEffect(
     useCallback(() => {
@@ -28,14 +48,18 @@ export function ProductDetailsScreen({route}) {
     }, [removeAllProducts]),
   );
 
+  useEffect(() => {
+    checkFavorite();
+  }, [checkFavorite]);
+
   return (
     <View style={styles.container}>
       <View>
         <ProductImage
           image={data?.image || ''}
-          isFavorite={false}
+          isFavorite={favorite}
           isPending={isPending}
-          onPressFavorite={() => handleSetFavorite(productId)}
+          onPressFavorite={() => handleSetFavorite()}
         />
         <ProductInfo
           title={data?.title || ''}

@@ -1,43 +1,32 @@
-import React, {useState} from 'react';
+import React, {useCallback} from 'react';
 import {StyleSheet, View} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
 
+import theme from '@/config/theme';
 import {Button} from '@/components';
 import {useGetProductById} from '@/hooks/useGetProductById';
 import {Category} from '@/services/api';
+import {useStoreProducts} from '@/stores/products';
 
 import {ProductImage} from './components/ProductImage/ProductImage';
 import {ProductInfo} from './components/ProductInfo/ProductInfo';
 import {ProductCounter} from './components/ProductCounter/ProductCounter';
-import {
-  favoritesStore,
-  useFavoritesStore,
-  useStore,
-  useStoreBears,
-} from '@/stores/favorites';
-import theme from '@/config/theme';
 
 export function ProductDetailsScreen({route}) {
   // const [isFavorite, setIsFavorite] = useState(false);
   const {productId} = route.params;
-  const {data, isError, isPending} = useGetProductById(productId);
-  const bears = useStoreBears(state => state.bears);
-  const increasePopulation = useStoreBears(state => state.increasePopulation);
-  const decreasePopulation = useStoreBears(state => state.decreasePopulation);
+  const {data, isPending} = useGetProductById(productId);
 
-  // const {addFavorite, removeFavorite, isFavorite} = useFavoritesStore();
+  const {products, decreaseProducts, increaseProducts, removeAllProducts} =
+    useStoreProducts();
 
-  const handleSetFavorite = id => {
-    // if (isFavorite(id)) {
-    //   removeFavorite(id);
-    //   console.log('removeu');
-    // } else {
-    //   if (data) {
-    //     addFavorite(data);
-    //   }
-    console.log('adicionou');
-  };
+  const handleSetFavorite = id => {};
 
-  console.log(data?.rating);
+  useFocusEffect(
+    useCallback(() => {
+      removeAllProducts();
+    }, [removeAllProducts]),
+  );
 
   return (
     <View style={styles.container}>
@@ -58,9 +47,9 @@ export function ProductDetailsScreen({route}) {
       <View style={styles.footer}>
         <ProductCounter
           price={data?.price || 0}
-          products={bears}
-          increase={increasePopulation}
-          decrease={decreasePopulation}
+          products={products}
+          increase={increaseProducts}
+          decrease={decreaseProducts}
           count={data?.rating.count || 0}
         />
         <Button title="colocar no ticket" />

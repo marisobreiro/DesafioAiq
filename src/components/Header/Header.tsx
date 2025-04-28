@@ -1,18 +1,33 @@
 import React from 'react';
 import {Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParamList} from '@/config/navigation';
 
 import Menu from '../../assets/icons/menu.svg';
 import Mail from '../../assets/icons/mail.svg';
+import theme from '@/config/theme';
 
 export function HeaderLeft() {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
+  const handlePressMenu = () => {
+    navigation.navigate('PerfilScreen');
+  };
   return (
-    <TouchableOpacity hitSlop={30} style={styles.menu}>
-      <Menu width={24} height={24} stroke={'#7B1FA2'} />
-      <Image
-        source={require('../../assets/images/avatar.png')}
-        style={styles.avatar}
-      />
-    </TouchableOpacity>
+    <>
+      <TouchableOpacity
+        hitSlop={30}
+        style={styles.menu}
+        onPress={handlePressMenu}>
+        <Menu width={24} height={24} stroke={'#7B1FA2'} />
+        <Image
+          source={require('../../assets/images/avatar.png')}
+          style={styles.avatar}
+        />
+      </TouchableOpacity>
+    </>
   );
 }
 
@@ -42,5 +57,13 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     marginLeft: 10,
+  },
+  menuContainer: {
+    backgroundColor: theme.colors.background,
+    width: 400,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: -100,
   },
 });

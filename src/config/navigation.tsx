@@ -5,17 +5,23 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {HomeScreen, ProductDetailsScreen} from '@/screens';
 import {Aiq} from '@/assets/icons';
 import {HeaderLeft, HeaderRight} from '../components/Header/Header';
+import {LoginScreen} from '@/screens/LoginScreen/LoginScreen';
+import {CadastroScreen} from '@/screens/CadastroScreen/CadastroScreen';
+import {PerfilScreen} from '@/screens/PerfilScreen/PerfilScreen';
 
 export type RootStackParamList = {
   HomeScreen: undefined;
   ProductDetailsScreen: {productId: number};
+  LoginScreen: undefined;
+  CadastroScreen: undefined;
+  PerfilScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export function RootStackNavigator() {
   return (
-    <Stack.Navigator initialRouteName="HomeScreen">
+    <Stack.Navigator initialRouteName="LoginScreen">
       <Stack.Screen
         name="HomeScreen"
         component={HomeScreen}
@@ -40,6 +46,21 @@ export function RootStackNavigator() {
           },
           headerTitle: HeaderCenter,
         }}
+      />
+      <Stack.Screen
+        name="LoginScreen"
+        component={LoginScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="CadastroScreen"
+        component={CadastroScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="PerfilScreen"
+        component={PerfilScreen}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );

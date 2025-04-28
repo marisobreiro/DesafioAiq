@@ -76,7 +76,7 @@ export function ProductDetailsScreen({route}: ProductDetailsScrenProps) {
           decrease={decreaseProducts}
           count={data?.rating.count || 0}
         />
-        <Button title="colocar no ticket" />
+        <Button title="colocar no ticket" onPress={() => {}} />
       </View>
     </View>
   );

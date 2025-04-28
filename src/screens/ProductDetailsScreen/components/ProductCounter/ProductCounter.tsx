@@ -27,7 +27,7 @@ export function ProductCounter({
     <View style={styles.container}>
       <View style={styles.totalContainer}>
         <Paragraph fontSize={theme.fontSizes.large}>valor total </Paragraph>
-        <Text style={styles.totalText}>{formatCurrency(price)}</Text>
+        <Text style={styles.totalText}>{formatCurrency(price * products)}</Text>
       </View>
 
       <View style={styles.counter}>

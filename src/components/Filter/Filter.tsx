@@ -1,15 +1,19 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Paragraph} from '../Paragraph/Paragraph';
+import theme from '@/config/theme';
 
 type FilterProps = {
-  backgroundColor: string;
   color: string;
   title: string;
+  isActive: boolean;
   onPress: () => void;
 };
 
-export function Filter({backgroundColor, color, title, onPress}: FilterProps) {
+export function Filter({color, title, isActive = false, onPress}: FilterProps) {
+  const backgroundColor = isActive
+    ? theme.colors.primary
+    : theme.colors.textSecondary;
   return (
     <TouchableOpacity
       style={[styles.container, {backgroundColor}]}
@@ -25,5 +29,6 @@ export const styles = StyleSheet.create({
     paddingVertical: 2,
     paddingHorizontal: 10,
     marginHorizontal: 2,
+    height: 30,
   },
 });

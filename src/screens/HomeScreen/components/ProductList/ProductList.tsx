@@ -7,7 +7,6 @@ import {Paragraph} from '@/components';
 import {getFavorites} from '@/stores/favorites';
 import {Category, Product} from '@/types';
 
-import {FavoriteButton} from '../FavoriteButton/FavoriteButton';
 import {ProductItem} from '../ProductItem/ProductItem';
 
 type ProductListProps = {
@@ -62,8 +61,9 @@ export function ProductList({
   }
 
   return (
-    <>
+    <View style={styles.container}>
       <FlatList
+        key={selectedCategory ?? 'all'}
         style={styles.list}
         data={productsToDisplay}
         keyExtractor={item => item.id.toString()}
@@ -73,17 +73,18 @@ export function ProductList({
           </View>
         )}
       />
-      <FavoriteButton />
-    </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    paddingBottom: 500,
+  },
   list: {
     marginTop: theme.spacing.sm,
   },
   content: {
-    flex: 1,
     padding: theme.spacing.sm,
   },
 });

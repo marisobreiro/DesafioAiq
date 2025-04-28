@@ -1,12 +1,17 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  TouchableOpacityProps,
+} from 'react-native';
 
+import theme from '@/config/theme';
 import {Heart} from '@/assets/icons';
 
-export function FavoriteButton() {
+export function FavoriteButton({...props}: TouchableOpacityProps) {
   return (
-    <TouchableOpacity style={styles.favButton}>
-      <Heart width={24} height={24} stroke={'#fff'} />
+    <TouchableOpacity style={styles.favButton} {...props}>
+      <Heart width={24} height={24} stroke={theme.colors.secondary} />
     </TouchableOpacity>
   );
 }
@@ -16,7 +21,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#7B1FA2',
+    backgroundColor: theme.colors.primary,
     borderRadius: 40,
     height: 60,
     width: 60,

@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import theme from '@/config/theme';
 import {RootStackParamList} from '@/config/navigation';
-import {Funnel} from '@/assets/icons';
 import {Filter, Layout} from '@/components';
 import {Category, categoryTranslations} from '@/types/categories';
 
-import {CardSection, ProductList} from './components';
+import {CardSection, FavoriteButton, ProductList} from './components';
 
 export function HomeScreen() {
   const navigation =
@@ -18,6 +17,14 @@ export function HomeScreen() {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(
     null,
   );
+
+  const filterOptions = [
+    {key: 'favorites', label: 'Favoritos'},
+    ...Object.entries(categoryTranslations).map(([key, label]) => ({
+      key,
+      label,
+    })),
+  ];
 
   const handleProductPress = (productId: number) => {
     navigation.navigate('ProductDetailsScreen', {productId});
@@ -29,30 +36,33 @@ export function HomeScreen() {
         <View style={styles.container}>
           <View style={styles.content}>
             <CardSection />
-            <View style={styles.filter}>
-              <Filter
-                backgroundColor={theme.colors.primary}
-                color={theme.colors.secondary}
-                title="favoritos"
-                onPress={() => setShowFavorites(prev => !prev)}
-              />
-              {Object.entries(categoryTranslations).map(([key, label]) => (
-                <Filter
-                  key={key}
-                  backgroundColor={theme.colors.primary}
-                  color={theme.colors.secondary}
-                  title={label}
-                  onPress={() =>
-                    setSelectedCategory(prev =>
-                      prev === key ? null : (key as Category),
-                    )
-                  }
-                />
-              ))}
-              <Funnel
-                width={20}
-                height={20}
-                stroke={theme.colors.textSecondary}
+            <View>
+              <FlatList
+                data={filterOptions}
+                keyExtractor={item => item.key}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.filterList}
+                renderItem={({item}) => (
+                  <Filter
+                    isActive={
+                      item.key === 'favorites'
+                        ? showFavorites
+                        : selectedCategory === item.key
+                    }
+                    color={theme.colors.secondary}
+                    title={item.label}
+                    onPress={() => {
+                      if (item.key === 'favorites') {
+                        setShowFavorites(prev => !prev);
+                      } else {
+                        setSelectedCategory(prev =>
+                          prev === item.key ? null : (item.key as Category),
+                        );
+                      }
+                    }}
+                  />
+                )}
               />
             </View>
             <ProductList
@@ -61,6 +71,7 @@ export function HomeScreen() {
               selectedCategory={selectedCategory}
             />
           </View>
+          <FavoriteButton onPress={() => setShowFavorites(prev => !prev)} />
         </View>
       }
     />
@@ -73,14 +84,13 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   content: {
-    flex: 1,
     justifyContent: 'space-between',
     padding: 10,
   },
-  filter: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+  filterList: {
     marginTop: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    alignItems: 'center',
   },
 });

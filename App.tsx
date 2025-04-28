@@ -1,17 +1,16 @@
 import React from 'react';
-import {createStaticNavigation} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
-
-import {RootStack} from './src/config/navigation';
-
-const Navigation = createStaticNavigation(RootStack);
+import {RootStackNavigator} from '@/config/navigation';
+import {NavigationContainer} from '@react-navigation/native';
 
 const queryClient = new QueryClient();
 
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Navigation />
+      <NavigationContainer>
+        <RootStackNavigator />
+      </NavigationContainer>
     </QueryClientProvider>
   );
 }

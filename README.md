@@ -30,7 +30,6 @@ npm start
 # ou usando Yarn
 yarn start
 
-
 # Inicie o Metro
 yarn start
 ```

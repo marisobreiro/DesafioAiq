@@ -53,20 +53,22 @@ export function ProductDetailsScreen({route}: ProductDetailsScrenProps) {
   }, [checkFavorite]);
 
   return (
-    <View style={styles.container}>
-      <View>
-        <ProductImage
-          image={data?.image || ''}
-          isFavorite={favorite}
-          isPending={isPending}
-          onPressFavorite={() => handleSetFavorite()}
-        />
-        <ProductInfo
-          title={data?.title || ''}
-          description={data?.description || ''}
-          category={data?.category as Category}
-          rating={data?.rating || {rate: 0, count: 0}}
-        />
+    <>
+      <View style={styles.container}>
+        <View>
+          <ProductImage
+            image={data?.image || ''}
+            isFavorite={favorite}
+            isPending={isPending}
+            onPressFavorite={() => handleSetFavorite()}
+          />
+          <ProductInfo
+            title={data?.title || ''}
+            description={data?.description || ''}
+            category={data?.category as Category}
+            rating={data?.rating || {rate: 0, count: 0}}
+          />
+        </View>
       </View>
       <View style={styles.footer}>
         <ProductCounter
@@ -78,16 +80,18 @@ export function ProductDetailsScreen({route}: ProductDetailsScrenProps) {
         />
         <Button title="colocar no ticket" onPress={() => {}} />
       </View>
-    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'space-between',
   },
   footer: {
+    position: 'absolute',
+    width: '100%',
+    bottom: 0,
     backgroundColor: theme.colors.secondary,
   },
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 
 import theme from '@/config/theme';
 import {Add, Remove} from '@/assets/icons';
@@ -27,7 +27,9 @@ export function ProductCounter({
     <View style={styles.container}>
       <View style={styles.totalContainer}>
         <Paragraph fontSize={theme.fontSizes.large}>valor total </Paragraph>
-        <Text style={styles.totalText}>{formatCurrency(price * products)}</Text>
+        <Paragraph style={styles.totalText}>
+          {formatCurrency(price * products)}
+        </Paragraph>
       </View>
 
       <View style={styles.counter}>
@@ -53,8 +55,6 @@ export function ProductCounter({
 
 const styles = StyleSheet.create({
   container: {
-    position: 'relative',
-    bottom: 0,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   },
   totalContainer: {
     alignItems: 'center',
+    justifyContent: 'center',
     flexDirection: 'row',
     marginBottom: 12,
   },
@@ -70,6 +71,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-Bold',
     fontSize: theme.fontSizes.large,
     color: theme.colors.success,
+    textTransform: 'capitalize',
   },
   counter: {
     flexDirection: 'row',

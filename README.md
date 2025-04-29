@@ -1,97 +1,72 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 📱 DesafioAiq
 
-# Getting Started
+> DesafioAiq é um app mobile feito em React Native que lista produtos de forma simples e eficiente. Possui gerenciamento de estado com Zustand, persistência de dados com local storage e realiza a obtenção de dados usando React Query. Projeto leve, responsivo e pronto para Android e iOS.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 🚀 Tecnologias
 
-## Step 1: Start Metro
+`React Native` | `Typescript` | `Zustand` | `React Query` | `Firebase Autentication` | `Firebase Analytics` | `Async Storage` | `Axios` | `React Navigation`
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## 📋 Pré-requisitos
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+Antes de começar, garanta que você possui um ambiente configurado e pronto para rodar um projeto de React Native.
+Nesse projeto, usei a versâo **CLI 0.79**, você pode conferir os requisitos [**aqui**](https://reactnative.dev/docs/set-up-your-environment).
+
+## 📦 Como rodar o projeto
 
 ```sh
-# Using npm
-npm start
+# Clone este repositório
+git clone https://github.com/marisobreiro/DesafioAiq.git
 
-# OR using Yarn
+# Acesse a pasta do projeto no seu terminal/cmd
+cd DesafioAiq
+
+# Instale as dependências
+# Usando npm
+npm start
+# ou usando Yarn
+yarn start
+
+
+# Inicie o Metro
 yarn start
 ```
 
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+## ⛏️ Como rodar o aplicativo
 
 ### Android
 
 ```sh
-# Using npm
+# Com o Metro rodando, abra um novo terminal na pasta do projeto DesafioAiq e rode:
+# Usando npm
 npm run android
 
-# OR using Yarn
+# ou usando Yarn
 yarn android
 ```
 
 ### iOS
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
 ```sh
-bundle install
-```
+# Com o Metro rodando, abra um novo terminal na pasta ios projeto DesafioAiq rode:
+pod install
 
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
+# Apos a instalação, retorne a pasta raiz do projeto e rode:
+# Usando npm
 npm run ios
 
-# OR using Yarn
+# ou usando Yarn
 yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## ⚙️ Funcionalidades
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+Com o DesafioAiq, o usuário pode criar uma conta, favoritar seus produtos favoritos filtrando por categorias e visualizar mais detalhes como avaliações, valores e sua descrição.
 
-## Step 3: Modify your app
+O aplicativo conta também com uma integração no Google Analytics, facilitando o monitoramento e criação de funils para acompanhamento de vendas.
 
-Now that you have successfully run the app, let's make changes!
+## 🎨 Layout
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+O design do app foi inspirado no app de produção da aiqfome e no figma divulgado para o desafio web.
+Você pode visualizar o wireframe [aqui](https://www.figma.com/design/wrlMJ5EUsSOXhSW2OVJnlF/DesafioAiq?node-id=0-1&m=dev&t=Hz6GsJAIZ6CJh5HP-1)
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Feito com amor @marisobreiro

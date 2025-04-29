@@ -1,3 +1,7 @@
+![Cover](https://github.com/user-attachments/assets/5614ab67-9f33-47b9-b44d-727ac885ece9)
+
+
+
 # 📱 DesafioAiq
 
 > DesafioAiq é um app mobile feito em React Native que lista produtos de forma simples e eficiente. Possui gerenciamento de estado com Zustand, persistência de dados com local storage e realiza a obtenção de dados usando React Query. Projeto leve, responsivo e pronto para Android e iOS.

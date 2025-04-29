@@ -77,6 +77,7 @@ export function LoginScreen() {
         <TextInput
           style={styles.input}
           placeholder="insira sua senha aqui"
+          secureTextEntry
           placeholderTextColor={theme.colors.background}
           returnKeyType="done"
           onChangeText={p => handleOnChangePassword(p)}

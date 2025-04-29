@@ -8,6 +8,7 @@ import {HeaderLeft, HeaderRight} from '../components/Header/Header';
 import {LoginScreen} from '@/screens/LoginScreen/LoginScreen';
 import {CadastroScreen} from '@/screens/CadastroScreen/CadastroScreen';
 import {PerfilScreen} from '@/screens/PerfilScreen/PerfilScreen';
+import theme from './theme';
 
 export type RootStackParamList = {
   HomeScreen: undefined;
@@ -55,7 +56,12 @@ export function RootStackNavigator() {
       <Stack.Screen
         name="CadastroScreen"
         component={CadastroScreen}
-        options={{headerShown: false}}
+        options={{
+          headerBackVisible: true,
+          headerTitle: '',
+          headerTintColor: theme.colors.secondary,
+          headerStyle: {backgroundColor: theme.colors.primary},
+        }}
       />
       <Stack.Screen
         name="PerfilScreen"

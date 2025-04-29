@@ -83,12 +83,14 @@ export function CadastroScreen() {
         />
         <TextInput
           style={styles.input}
+          secureTextEntry
           placeholder="insira sua senha aqui"
           placeholderTextColor={theme.colors.background}
           onChangeText={p => handleOnChangePassword(p)}
         />
         <TextInput
           style={styles.input}
+          secureTextEntry
           placeholder="repita sua senha aqui"
           placeholderTextColor={theme.colors.background}
           onChangeText={c => handleOnChangeConfirmPassword(c)}

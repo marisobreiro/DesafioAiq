@@ -63,7 +63,7 @@ yarn ios
 
 ## ⚙️ Funcionalidades
 
-Com o DesafioAiq, o usuário pode criar uma conta, favoritar seus produtos favoritos filtrando por categorias e visualizar mais detalhes como avaliações, valores e sua descrição.
+Com o DesafioAiq, o usuário pode criar uma conta, favoritar produtos, filtrar por categorias e visualizar mais detalhes como avaliações, valores e sua descrição.
 
 O aplicativo conta também com uma integração no Google Analytics, facilitando o monitoramento e criação de funils para acompanhamento de vendas.
 
